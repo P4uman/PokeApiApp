@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PokeApiApp</string>
+    <string name="type_search_title">Search by type</string>
 </resources>

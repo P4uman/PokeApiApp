@@ -1,26 +1,25 @@
 package com.app.pokeapi
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.pokeapi.databinding.ActivityMainBinding
 import com.app.pokeapi.databinding.ItemTypeBinding
-import com.app.pokeapi.domain.model.TypeModel
-import com.app.pokeapi.domain.useCase.GetTypeListUseCase
+import com.app.pokeapi.ui.TypeDisplay
+
+private const val GRID_SPAN_COUNT = 2
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var typesAdapter: TypesAdapter
     private val viewModel: MainViewModel by viewModels()
-    private val typesAdapter : TypesAdapter by lazy {
-        TypesAdapter()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +32,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        binding.rvTypeList.layoutManager = LinearLayoutManager(this)
+        binding.rvTypeList.layoutManager = GridLayoutManager(this, GRID_SPAN_COUNT)
+        typesAdapter = TypesAdapter { typeDisplay ->
+            Toast.makeText(this, typeDisplay.name, Toast.LENGTH_LONG).show()
+        }
         binding.rvTypeList.adapter = typesAdapter
     }
 
@@ -44,18 +46,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     class TypesAdapter(
+        private val onItemClickListener: (TypeDisplay) -> Unit
     ) : RecyclerView.Adapter<TypesAdapter.ViewHolder>() {
 
-        private var questionsList: List<TypeModel> = ArrayList(0)
+        private var typeList: List<TypeDisplay> = ArrayList(0)
 
         inner class ViewHolder(binding: ItemTypeBinding) :
             RecyclerView.ViewHolder(binding.root) {
             val title = binding.tvTitle
+            val linearContainer = binding.llContainer
+            val icon = binding.ivIcon
         }
 
         @SuppressLint("NotifyDataSetChanged")
-        fun bindData(typeList: List<TypeModel>) {
-            questionsList = ArrayList(typeList)
+        fun bindData(typeList: List<TypeDisplay>) {
+            this.typeList = ArrayList(typeList)
             notifyDataSetChanged()
         }
 
@@ -65,11 +70,17 @@ class MainActivity : AppCompatActivity() {
 
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.title.text = questionsList[position].typeName
+            val type = typeList[position]
+            holder.title.text = type.name
+            holder.icon.setImageResource(type.icon)
+            holder.linearContainer.setBackgroundResource(type.color)
+            holder.linearContainer.setOnClickListener {
+                onItemClickListener.invoke(type)
+            }
         }
 
         override fun getItemCount(): Int {
-            return questionsList.size
+            return typeList.size
         }
 
     }
