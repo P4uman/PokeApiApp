@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_flow_nav_graph"
+    app:startDestination="@id/searchByTypeFragment">
+
+    <fragment
+        android:id="@+id/searchByTypeFragment"
+        android:name="com.app.pokeapi.ui.fragmentSearchByType.SearchByTypeFragment"
+        android:label="@string/type_search_title"
+        tools:layout="@layout/fragment_search_by_type" >
+        <action
+            android:id="@+id/action_searchByTypeFragment_to_typeDetailFragment"
+            app:destination="@id/typeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/typeDetailFragment"
+        android:name="com.app.pokeapi.ui.fragmentTypeDetail.TypeDetailFragment"
+        android:label="@string/type_detail_title"
+        tools:layout="@layout/fragment_type_detail" />
+</navigation>
