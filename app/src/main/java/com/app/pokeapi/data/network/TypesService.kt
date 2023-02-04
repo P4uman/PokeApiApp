@@ -1,6 +1,6 @@
 package com.app.pokeapi.data.network
 
-import com.app.pokeapi.RetrofitHelper
+import com.app.pokeapi.core.RetrofitHelper
 import com.app.pokeapi.data.network.entities.TypeEntityList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

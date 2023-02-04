@@ -1,4 +1,4 @@
-package com.app.pokeapi.ui
+package com.app.pokeapi.ui.display
 
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes

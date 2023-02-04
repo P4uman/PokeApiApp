@@ -1,4 +1,4 @@
-package com.app.pokeapi
+package com.app.pokeapi.core
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

@@ -1,4 +1,4 @@
-package com.app.pokeapi.ui.fragmentTypeDetail
+package com.app.pokeapi.ui.framgent.fragmentTypeDetail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,7 +15,6 @@ class TypeDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         return inflater.inflate(R.layout.fragment_type_detail, container, false)
     }
 }

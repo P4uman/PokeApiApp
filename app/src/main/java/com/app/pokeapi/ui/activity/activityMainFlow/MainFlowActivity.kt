@@ -1,11 +1,11 @@
-package com.app.pokeapi
+package com.app.pokeapi.ui.activity.activityMainFlow
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.app.pokeapi.databinding.ActivityMainBinding
 
 
-class MainActivity : AppCompatActivity() {
+class MainFlowActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
