@@ -6,15 +6,18 @@ import androidx.lifecycle.viewModelScope
 import com.app.pokeapi.core.TypeEnum
 import com.app.pokeapi.domain.useCase.GetTypeListUseCase
 import com.app.pokeapi.ui.display.TypeDisplay
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class SearchByTypeViewModel : ViewModel() {
     val typeListModel = MutableLiveData<List<TypeDisplay>>()
+    val showLoader = MutableLiveData<Boolean>()
 
     private val getTypeListUseCase = GetTypeListUseCase()
 
     init {
         viewModelScope.launch {
+            showLoader.postValue(true)
             val result = getTypeListUseCase()
 
             val displayList: List<TypeDisplay?> = result.map { typeModel ->
@@ -26,6 +29,7 @@ class SearchByTypeViewModel : ViewModel() {
                 )
             }
             typeListModel.postValue(displayList.filterNotNull())
+            showLoader.postValue(false)
         }
     }
 }

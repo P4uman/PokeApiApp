@@ -1,15 +1,25 @@
 package com.app.pokeapi.ui.activity.activityMainFlow
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.app.pokeapi.databinding.ActivityMainBinding
+import android.view.LayoutInflater
+import androidx.activity.viewModels
+import com.app.pokeapi.core.baseUI.BaseActivityMVVM
 
 
-class MainFlowActivity : AppCompatActivity() {
+class MainFlowActivity : BaseActivityMVVM<MainFlowView>() {
+
+    private val loaderViewModel: LoaderViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(ActivityMainBinding.inflate(layoutInflater).root)
+        setContentView(view.rootView)
     }
 
+    override fun getView(layoutInflater: LayoutInflater) = MainFlowView(layoutInflater)
+
+    override fun initObservers() {
+        loaderViewModel.showLoading.observe(this) { loaderVisible ->
+            view.showLoader(loaderVisible)
+        }
+    }
 }
