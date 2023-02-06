@@ -16,12 +16,12 @@ class SearchByTypeFragment : BaseFragmentMVVM<SearchByTypeView>(), SearchByTypeV
 
     override fun onStart() {
         super.onStart()
-        view.registerListener(this)
+        myView.registerListener(this)
     }
 
     override fun onStop() {
         super.onStop()
-        view.unregisterListener(this)
+        myView.unregisterListener(this)
     }
 
     override fun initObservers() {
@@ -29,7 +29,7 @@ class SearchByTypeFragment : BaseFragmentMVVM<SearchByTypeView>(), SearchByTypeV
             loaderViewModel.showLoading(loaderVisible)
         }
         viewModel.typeListModel.observe(viewLifecycleOwner) { typeList ->
-            view.bindTypesMenu(typeList)
+            myView.bindTypesMenu(typeList)
         }
     }
 

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 
 abstract class BaseFragmentMVVM<VIEW : BaseViewMVVM<*, *>> : Fragment() {
 
-    protected val view: VIEW by lazy { getView(layoutInflater) }
+    protected val myView: VIEW by lazy { getView(layoutInflater) }
 
     abstract fun getView(layoutInflater: LayoutInflater): VIEW
 
@@ -16,7 +16,7 @@ abstract class BaseFragmentMVVM<VIEW : BaseViewMVVM<*, *>> : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return view.rootView
+        return myView.rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
