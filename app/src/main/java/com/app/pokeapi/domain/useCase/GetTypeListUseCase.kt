@@ -4,17 +4,18 @@ import com.app.pokeapi.core.TypeEnum
 import com.app.pokeapi.data.network.TypesService
 import com.app.pokeapi.data.network.entities.TypeEntity
 import com.app.pokeapi.domain.model.TypeModel
+import javax.inject.Inject
 
-class GetTypeListUseCase {
-
-    private val service = TypesService()
+class GetTypeListUseCase
+@Inject constructor(
+    private val service: TypesService
+){
 
     suspend operator fun invoke(): List<TypeModel> {
         val modelList: List<TypeModel?> =
             service.getTypeList()?.list?.map { typeEntity ->
                 mapToDomain(typeEntity)
             } ?: emptyList()
-
         return modelList.filterNotNull()
     }
 

@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import com.app.pokeapi.core.baseUI.BaseActivityMVVM
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainFlowActivity : BaseActivityMVVM<MainFlowView>() {
 
     private val loaderViewModel: LoaderViewModel by viewModels()

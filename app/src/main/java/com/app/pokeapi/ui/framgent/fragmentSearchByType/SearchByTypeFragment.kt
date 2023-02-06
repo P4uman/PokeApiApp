@@ -8,7 +8,9 @@ import androidx.navigation.fragment.findNavController
 import com.app.pokeapi.core.baseUI.BaseFragmentMVVM
 import com.app.pokeapi.ui.activity.activityMainFlow.LoaderViewModel
 import com.app.pokeapi.ui.display.TypeDisplay
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchByTypeFragment : BaseFragmentMVVM<SearchByTypeView>(), SearchByTypeView.Listeners {
 
     private val viewModel: SearchByTypeViewModel by viewModels()
