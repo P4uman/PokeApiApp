@@ -1,4 +1,4 @@
-package com.app.pokeapi.ui.framgent.fragmentTypeDetail
+package com.app.pokeapi.ui.fragment.fragmentTypeDetail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

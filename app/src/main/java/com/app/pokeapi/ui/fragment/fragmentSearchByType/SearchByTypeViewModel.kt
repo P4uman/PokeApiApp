@@ -1,4 +1,4 @@
-package com.app.pokeapi.ui.framgent.fragmentSearchByType
+package com.app.pokeapi.ui.fragment.fragmentSearchByType
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,7 +7,6 @@ import com.app.pokeapi.core.TypeEnum
 import com.app.pokeapi.domain.useCase.GetTypeListUseCase
 import com.app.pokeapi.ui.display.TypeDisplay
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

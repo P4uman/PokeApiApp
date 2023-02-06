@@ -1,4 +1,4 @@
-package com.app.pokeapi.ui.framgent.fragmentSearchByType
+package com.app.pokeapi.ui.fragment.fragmentSearchByType
 
 import android.view.LayoutInflater
 import android.widget.Toast
