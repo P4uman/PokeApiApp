@@ -13,14 +13,14 @@ class MainFlowActivity : BaseActivityMVVM<MainFlowView>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(view.rootView)
+        setContentView(myView.rootView)
     }
 
     override fun getView(layoutInflater: LayoutInflater) = MainFlowView(layoutInflater)
 
     override fun initObservers() {
         loaderViewModel.showLoading.observe(this) { loaderVisible ->
-            view.showLoader(loaderVisible)
+            myView.showLoader(loaderVisible)
         }
     }
 }
