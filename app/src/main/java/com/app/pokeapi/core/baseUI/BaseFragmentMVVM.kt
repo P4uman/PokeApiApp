@@ -5,18 +5,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.app.pokeapi.core.di.FragmentViewModule
+import javax.inject.Inject
 
 abstract class BaseFragmentMVVM<VIEW : BaseViewMVVM<*, *>> : Fragment() {
 
-    protected val myView: VIEW by lazy { getView(layoutInflater) }
+    @Inject
+    lateinit var module: FragmentViewModule
+    protected val mView: VIEW by lazy { injectView(layoutInflater) }
 
-    abstract fun getView(layoutInflater: LayoutInflater): VIEW
+    /**
+     * Inject view component inherited of VaseViewMVVM from FragmentViewModule
+     * Place provider at FragmentViewModule
+     */
+    abstract fun injectView(layoutInflater: LayoutInflater): VIEW
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return myView.rootView
+        return mView.rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -24,5 +32,8 @@ abstract class BaseFragmentMVVM<VIEW : BaseViewMVVM<*, *>> : Fragment() {
         initObservers()
     }
 
+    /**
+     * Place here observers to viewModels
+     */
     protected open fun initObservers(){}
 }

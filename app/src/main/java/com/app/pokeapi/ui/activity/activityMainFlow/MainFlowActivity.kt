@@ -7,8 +7,7 @@ import com.app.pokeapi.core.baseUI.BaseActivityMVVM
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainFlowActivity : BaseActivityMVVM<MainFlowView>() {
-
+class MainFlowActivity: BaseActivityMVVM<MainFlowView>() {
     private val loaderViewModel: LoaderViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,11 +15,12 @@ class MainFlowActivity : BaseActivityMVVM<MainFlowView>() {
         setContentView(myView.rootView)
     }
 
-    override fun getView(layoutInflater: LayoutInflater) = MainFlowView(layoutInflater)
-
     override fun initObservers() {
         loaderViewModel.showLoading.observe(this) { loaderVisible ->
             myView.showLoader(loaderVisible)
         }
     }
+
+    override fun injectView(layoutInflater: LayoutInflater)
+    = module.injectMainFlowView(layoutInflater)
 }

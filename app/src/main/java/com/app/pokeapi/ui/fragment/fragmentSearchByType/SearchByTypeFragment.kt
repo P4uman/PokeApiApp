@@ -6,9 +6,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.app.pokeapi.core.baseUI.BaseFragmentMVVM
+import com.app.pokeapi.core.di.FragmentViewModule
 import com.app.pokeapi.ui.activity.activityMainFlow.LoaderViewModel
 import com.app.pokeapi.ui.display.TypeDisplay
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SearchByTypeFragment : BaseFragmentMVVM<SearchByTypeView>(), SearchByTypeView.Listeners {
@@ -18,12 +20,12 @@ class SearchByTypeFragment : BaseFragmentMVVM<SearchByTypeView>(), SearchByTypeV
 
     override fun onStart() {
         super.onStart()
-        myView.registerListener(this)
+        mView.registerListener(this)
     }
 
     override fun onStop() {
         super.onStop()
-        myView.unregisterListener(this)
+        mView.unregisterListener(this)
     }
 
     override fun initObservers() {
@@ -31,11 +33,12 @@ class SearchByTypeFragment : BaseFragmentMVVM<SearchByTypeView>(), SearchByTypeV
             loaderViewModel.showLoading(loaderVisible)
         }
         viewModel.typeListModel.observe(viewLifecycleOwner) { typeList ->
-            myView.bindTypesMenu(typeList)
+            mView.bindTypesMenu(typeList)
         }
     }
 
-    override fun getView(layoutInflater: LayoutInflater) = SearchByTypeView(layoutInflater)
+    override fun injectView(layoutInflater: LayoutInflater): SearchByTypeView =
+        module.injectSearchByTypeView(layoutInflater)
 
     override fun onTypeMenuClicked(typeDisplay: TypeDisplay) {
         Toast.makeText(context, typeDisplay.name, Toast.LENGTH_LONG).show()
