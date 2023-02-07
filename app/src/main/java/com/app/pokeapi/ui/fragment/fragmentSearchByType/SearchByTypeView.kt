@@ -30,7 +30,7 @@ class SearchByTypeView(
         binding.rvTypeList.adapter = typesAdapter
     }
 
-    override fun getViewBinding(layoutInflater: LayoutInflater) =
+    override fun inflateViewBinding(layoutInflater: LayoutInflater) =
         FragmentSearchByTypeBinding.inflate(layoutInflater)
 
     fun bindTypesMenu(typesMenu: List<TypeDisplay>) {

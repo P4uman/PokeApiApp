@@ -10,12 +10,12 @@ abstract class BaseViewMVVM<V : ViewBinding, LISTENER_TYPE>(
 
     interface BaseViewListeners
 
-    protected val binding by lazy { getViewBinding(layoutInflater) }
+    protected val binding by lazy { inflateViewBinding(layoutInflater) }
     protected val listeners = HashSet<LISTENER_TYPE>()
 
     val  rootView: View by lazy { binding.root }
 
-    abstract fun getViewBinding(layoutInflater: LayoutInflater): V
+    abstract fun inflateViewBinding(layoutInflater: LayoutInflater): V
 
     fun registerListener(listener: LISTENER_TYPE) {
         listeners.add(listener)

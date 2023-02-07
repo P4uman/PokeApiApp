@@ -9,7 +9,7 @@ class MainFlowView(
     layoutInflater: LayoutInflater
 ) : BaseViewMVVM<ActivityMainBinding, BaseViewMVVM.BaseViewListeners>(layoutInflater) {
 
-    override fun getViewBinding(layoutInflater: LayoutInflater) =
+    override fun inflateViewBinding(layoutInflater: LayoutInflater) =
         ActivityMainBinding.inflate(layoutInflater)
 
     fun showLoader(visible: Boolean) {
