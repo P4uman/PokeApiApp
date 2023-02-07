@@ -18,5 +18,9 @@
         android:id="@+id/typeDetailFragment"
         android:name="com.app.pokeapi.ui.fragment.fragmentTypeDetail.TypeDetailFragment"
         android:label="@string/type_detail_title"
-        tools:layout="@layout/fragment_type_detail" />
+        tools:layout="@layout/fragment_type_detail" >
+        <argument
+            android:name="typeID"
+            app:argType="string" />
+    </fragment>
 </navigation>

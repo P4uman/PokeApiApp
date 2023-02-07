@@ -3,6 +3,7 @@ package com.app.pokeapi.core.di
 import android.view.LayoutInflater
 import com.app.pokeapi.ui.activity.activityMainFlow.MainFlowView
 import com.app.pokeapi.ui.fragment.fragmentSearchByType.SearchByTypeView
+import com.app.pokeapi.ui.fragment.fragmentTypeDetail.TypeDetailView
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
@@ -17,4 +18,5 @@ import javax.inject.Provider
 class FragmentViewModule
 @Inject constructor() {
     fun injectSearchByTypeView(layoutInflater: LayoutInflater) = SearchByTypeView(layoutInflater)
+    fun injectTypeDetailView(layoutInflater: LayoutInflater) = TypeDetailView(layoutInflater)
 }

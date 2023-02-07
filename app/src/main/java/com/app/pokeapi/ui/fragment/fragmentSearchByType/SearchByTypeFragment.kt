@@ -42,6 +42,6 @@ class SearchByTypeFragment : BaseFragmentMVVM<SearchByTypeView>(), SearchByTypeV
 
     override fun onTypeMenuClicked(typeDisplay: TypeDisplay) {
         Toast.makeText(context, typeDisplay.name, Toast.LENGTH_LONG).show()
-        findNavController().navigate(SearchByTypeFragmentDirections.actionSearchByTypeFragmentToTypeDetailFragment())
+        findNavController().navigate(SearchByTypeFragmentDirections.actionSearchByTypeFragmentToTypeDetailFragment(typeDisplay.name))
     }
 }
