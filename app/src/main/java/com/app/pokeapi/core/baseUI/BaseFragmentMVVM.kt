@@ -29,9 +29,14 @@ abstract class BaseFragmentMVVM<VIEW : BaseViewMVVM<*, *>> : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        init()
         initObservers()
     }
 
+    /**
+     * Place here init logic executed after onViewCreated
+     */
+    protected open fun init() {}
     /**
      * Place here observers to viewModels
      */

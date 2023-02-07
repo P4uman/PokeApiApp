@@ -18,7 +18,6 @@ class SearchByTypeView(
     }
 
     private val typesAdapter: TypesMenuAdapter
-    private val context: Context get() = binding.root.context
 
     init {
         binding.rvTypeList.layoutManager = GridLayoutManager(context, GRID_SPAN_COUNT)
