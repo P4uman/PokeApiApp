@@ -39,7 +39,7 @@ class GetTypeListUseCaseTest {
     }
 
     @Test
-    fun `when service returns something map values to model`() = runBlocking {
+    fun `when service returns something map values to domain`() = runBlocking {
         // Given
         val mockTypeList = TypeEntityList(
             list = listOf(
