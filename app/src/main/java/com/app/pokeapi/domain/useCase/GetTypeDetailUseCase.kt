@@ -23,11 +23,9 @@ class GetTypeDetailUseCase
         entity: TypeDetailEntity
     ): TypeDetailModel {
         return TypeDetailModel(
-            pokemonList = entity.pokemonList?.mapNotNull { pokemonShortEntity ->
-                pokemonShortEntity.pokemon?.name?.let { name ->
-                    PokemonShortModel(name)
-                }
-            } ?: emptyList()
+            pokemonList = entity.pokemonList.map { pokemonShortEntity ->
+                PokemonShortModel(pokemonShortEntity.pokemon.name)
+            }
         )
     }
 }
