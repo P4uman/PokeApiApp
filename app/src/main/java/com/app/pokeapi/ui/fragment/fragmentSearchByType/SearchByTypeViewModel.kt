@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.app.pokeapi.core.TypeEnum
 import com.app.pokeapi.domain.model.TypeModel
 import com.app.pokeapi.domain.useCase.GetTypeListUseCase
-import com.app.pokeapi.ui.display.TypeDisplay
+import com.app.pokeapi.ui.fragment.fragmentSearchByType.model.TypeDisplay
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

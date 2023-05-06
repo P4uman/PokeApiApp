@@ -1,4 +1,4 @@
-package com.app.pokeapi.ui.display
+package com.app.pokeapi.ui.fragment.fragmentSearchByType.model
 
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes

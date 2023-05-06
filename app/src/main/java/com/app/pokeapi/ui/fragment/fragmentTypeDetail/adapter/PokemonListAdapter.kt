@@ -1,11 +1,11 @@
-package com.app.pokeapi.ui.fragment.fragmentTypeDetail.adapters
+package com.app.pokeapi.ui.fragment.fragmentTypeDetail.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.app.pokeapi.databinding.ItemPokemonBinding
-import com.app.pokeapi.ui.display.PokemonShortDisplay
+import com.app.pokeapi.ui.fragment.fragmentTypeDetail.model.PokemonShortDisplay
 
 class PokemonListAdapter : RecyclerView.Adapter<PokemonListAdapter.ViewHolder>() {
 

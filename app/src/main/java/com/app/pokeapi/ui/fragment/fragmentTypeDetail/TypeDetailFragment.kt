@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.pokeapi.core.baseUI.BaseFragmentMVVM
 import com.app.pokeapi.databinding.FragmentTypeDetailBinding
 import com.app.pokeapi.ui.activity.activityMainFlow.LoaderViewModel
-import com.app.pokeapi.ui.display.TypeDetailDisplay
-import com.app.pokeapi.ui.fragment.fragmentTypeDetail.adapters.PokemonListAdapter
+import com.app.pokeapi.ui.fragment.fragmentTypeDetail.model.TypeDetailDisplay
+import com.app.pokeapi.ui.fragment.fragmentTypeDetail.adapter.PokemonListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.pokeapi.domain.model.TypeDetailModel
 import com.app.pokeapi.domain.useCase.GetTypeDetailUseCase
-import com.app.pokeapi.ui.display.PokemonShortDisplay
-import com.app.pokeapi.ui.display.TypeDetailDisplay
+import com.app.pokeapi.ui.fragment.fragmentTypeDetail.model.PokemonShortDisplay
+import com.app.pokeapi.ui.fragment.fragmentTypeDetail.model.TypeDetailDisplay
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
