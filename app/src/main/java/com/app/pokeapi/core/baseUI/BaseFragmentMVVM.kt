@@ -5,40 +5,38 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.app.pokeapi.core.di.FragmentViewModule
-import javax.inject.Inject
+import androidx.viewbinding.ViewBinding
 
-abstract class BaseFragmentMVVM<VIEW : BaseViewMVVM<*, *>> : Fragment() {
+abstract class BaseFragmentMVVM<V : ViewBinding> : Fragment() {
 
-    @Inject
-    lateinit var module: FragmentViewModule
-    protected val mView: VIEW by lazy { injectView(layoutInflater) }
-
-    /**
-     * Inject view component inherited of VaseViewMVVM from FragmentViewModule
-     * Place provider at FragmentViewModule
-     */
-    abstract fun injectView(layoutInflater: LayoutInflater): VIEW
-
+    protected val binding by lazy { inflateViewBinding(layoutInflater) }
+    abstract fun inflateViewBinding(layoutInflater: LayoutInflater): V
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return mView.rootView
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        init()
+        initViews()
+        initListeners()
         initObservers()
     }
 
     /**
-     * Place here init logic executed after onViewCreated
+     * Place here init views logic executed after onViewCreated
      */
-    protected open fun init() {}
+    protected open fun initViews() {}
+
+    /**
+     *  Place here listeners of view components
+     */
+    protected open fun initListeners() {}
+
     /**
      * Place here observers to viewModels
      */
-    protected open fun initObservers(){}
+    protected open fun initObservers() {}
 }

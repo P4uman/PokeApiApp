@@ -1,35 +1,11 @@
-package com.app.pokeapi.ui.fragment.fragmentTypeDetail
+package com.app.pokeapi.ui.fragment.fragmentTypeDetail.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.app.pokeapi.core.baseUI.BaseViewMVVM
-import com.app.pokeapi.databinding.FragmentTypeDetailBinding
 import com.app.pokeapi.databinding.ItemPokemonBinding
 import com.app.pokeapi.ui.display.PokemonShortDisplay
-import com.app.pokeapi.ui.display.TypeDetailDisplay
-
-class TypeDetailView(
-    layoutInflater: LayoutInflater
-) : BaseViewMVVM<FragmentTypeDetailBinding, BaseViewMVVM.BaseViewListeners>(layoutInflater) {
-
-    private val pokemonAdapter: PokemonListAdapter
-
-    init {
-        binding.rvTypePokeList.layoutManager = LinearLayoutManager(context)
-        pokemonAdapter = PokemonListAdapter()
-        binding.rvTypePokeList.adapter = pokemonAdapter
-    }
-
-    override fun inflateViewBinding(layoutInflater: LayoutInflater) =
-        FragmentTypeDetailBinding.inflate(layoutInflater)
-
-    fun bindTypeDetail(display: TypeDetailDisplay) {
-        pokemonAdapter.bindData(display.pokemonByType)
-    }
-}
 
 class PokemonListAdapter : RecyclerView.Adapter<PokemonListAdapter.ViewHolder>() {
 
