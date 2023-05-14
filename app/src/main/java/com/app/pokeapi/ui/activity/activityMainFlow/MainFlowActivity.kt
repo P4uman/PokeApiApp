@@ -9,16 +9,9 @@ import com.app.pokeapi.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainFlowActivity: BaseActivityMVVM<ActivityMainBinding>() {
-    private val loaderViewModel: LoaderViewModel by viewModels()
+class MainFlowActivity : BaseActivityMVVM<ActivityMainBinding>() {
 
-    override fun initObservers() {
-        loaderViewModel.showLoading.observe(this) { loaderVisible ->
-            showLoader(loaderVisible)
-        }
-    }
-
-    private fun showLoader(visible: Boolean) {
+    override fun showLoader(visible: Boolean) {
         binding.llLoaderContainer.visibility =
             if (visible) {
                 View.VISIBLE

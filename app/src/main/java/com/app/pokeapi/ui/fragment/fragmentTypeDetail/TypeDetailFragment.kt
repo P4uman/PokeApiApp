@@ -1,22 +1,19 @@
 package com.app.pokeapi.ui.fragment.fragmentTypeDetail
 
 import android.view.LayoutInflater
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.pokeapi.core.baseUI.BaseFragmentMVVM
 import com.app.pokeapi.databinding.FragmentTypeDetailBinding
-import com.app.pokeapi.ui.activity.activityMainFlow.LoaderViewModel
-import com.app.pokeapi.ui.fragment.fragmentTypeDetail.model.TypeDetailDisplay
 import com.app.pokeapi.ui.fragment.fragmentTypeDetail.adapter.PokemonListAdapter
+import com.app.pokeapi.ui.fragment.fragmentTypeDetail.model.TypeDetailDisplay
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class TypeDetailFragment : BaseFragmentMVVM<FragmentTypeDetailBinding>() {
 
     private val viewModel: TypeDetailViewModel by viewModels()
-    private val loaderViewModel: LoaderViewModel by activityViewModels()
     private val args: TypeDetailFragmentArgs by navArgs()
 
     private val pokemonAdapter = PokemonListAdapter()
@@ -34,7 +31,7 @@ class TypeDetailFragment : BaseFragmentMVVM<FragmentTypeDetailBinding>() {
             bindTypeDetail(typeDetailDisplay)
         }
         viewModel.showLoading.observe(viewLifecycleOwner) { showLoading ->
-            loaderViewModel.showLoading(showLoading)
+            showLoader(showLoading)
         }
     }
 
@@ -42,6 +39,6 @@ class TypeDetailFragment : BaseFragmentMVVM<FragmentTypeDetailBinding>() {
         pokemonAdapter.bindData(display.pokemonByType)
     }
 
-    override fun inflateViewBinding(layoutInflater: LayoutInflater)
-    = FragmentTypeDetailBinding.inflate(layoutInflater)
+    override fun inflateViewBinding(layoutInflater: LayoutInflater) =
+        FragmentTypeDetailBinding.inflate(layoutInflater)
 }

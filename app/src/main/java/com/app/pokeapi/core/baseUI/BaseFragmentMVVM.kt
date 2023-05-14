@@ -39,4 +39,10 @@ abstract class BaseFragmentMVVM<V : ViewBinding> : Fragment() {
      * Place here observers to viewModels
      */
     protected open fun initObservers() {}
+
+    protected fun showLoader(visible: Boolean) {
+        if (activity is BaseActivityMVVM<*>) {
+            (activity as BaseActivityMVVM<*>).showLoader(visible)
+        }
+    }
 }

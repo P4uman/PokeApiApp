@@ -20,4 +20,6 @@ abstract class BaseActivityMVVM<V: ViewBinding> : AppCompatActivity(){
      * Place here observers to viewModels
      */
     protected open fun initObservers(){}
+
+    internal open fun showLoader(visible: Boolean) {}
 }
