@@ -5,14 +5,12 @@ import com.app.pokeapi.data.entities.TypeEntityList
 import com.app.pokeapi.data.service.PokeApiService
 import javax.inject.Inject
 
-class PokeApiDataSourceImpl @Inject constructor(
+class PokeApiDataSourceImp @Inject constructor(
     private val service: PokeApiService
 ) : PokeApiDataSource {
 
-    override suspend fun getTypeList(): Result<TypeEntityList?> =
-        runCatching {
-            service.getTypeList()
-        }
+    override suspend fun getTypeList(): TypeEntityList? =
+        service.getTypeList()
 
     override suspend fun getTypeDetail(typeID: String): Result<TypeDetailEntity?> =
         runCatching {

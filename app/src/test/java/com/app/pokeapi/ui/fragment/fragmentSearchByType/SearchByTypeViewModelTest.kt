@@ -3,7 +3,7 @@ package com.app.pokeapi.ui.fragment.fragmentSearchByType
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.app.pokeapi.core.TypeEnum
 import com.app.pokeapi.domain.model.TypeModel
-import com.app.pokeapi.domain.useCase.GetTypeListUseCase
+import com.app.pokeapi.domain.useCase.getTypeList.GetTypeListUseCaseImp
 import com.app.pokeapi.ui.fragment.fragmentSearchByType.model.TypeDisplay
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -21,7 +21,7 @@ import org.junit.Test
 class SearchByTypeViewModelTest {
 
     @RelaxedMockK
-    private lateinit var getTypeListUseCase: GetTypeListUseCase
+    private lateinit var getTypeListUseCase: GetTypeListUseCaseImp
 
 
     @get:Rule

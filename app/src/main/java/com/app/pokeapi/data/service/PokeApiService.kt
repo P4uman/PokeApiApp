@@ -2,6 +2,8 @@ package com.app.pokeapi.data.service
 
 import com.app.pokeapi.data.entities.TypeDetailEntity
 import com.app.pokeapi.data.entities.TypeEntityList
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class PokeApiService
@@ -9,10 +11,7 @@ class PokeApiService
     private val pokeApi: PokeApi
 ) {
 
-    suspend fun getTypeList(): TypeEntityList? =
-        pokeApi.getTypes().body()
-
-
+    suspend fun getTypeList(): TypeEntityList? = pokeApi.getTypes().body()
     suspend fun getTypeDetail(typeID: String): TypeDetailEntity? =
         pokeApi.getTypeDetail(typeID).body()
 }

@@ -4,13 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.pokeapi.core.TypeEnum
 import com.app.pokeapi.domain.model.TypeModel
-import com.app.pokeapi.domain.useCase.GetTypeListUseCase
+import com.app.pokeapi.domain.useCase.getTypeList.GetTypeListUseCase
+import com.app.pokeapi.domain.useCase.getTypeList.model.GetTypeListResult
 import com.app.pokeapi.ui.fragment.fragmentSearchByType.model.SearchByTypeUIState
 import com.app.pokeapi.ui.fragment.fragmentSearchByType.model.TypeDisplay
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -30,21 +29,31 @@ class SearchByTypeViewModel
 
     private fun getTypeListMenu() {
         viewModelScope.launch {
-            _uiState.update { SearchByTypeUIState.ShowLoader(true) }
-
-            val result = getTypeListUseCase()
-
-            _uiState.update { SearchByTypeUIState.BindTypeList(mapToDisplay(result)) }
-            _uiState.update { SearchByTypeUIState.ShowLoader(false) }
+            getTypeListUseCase.invoke()
+                .onStart { _uiState.update {  SearchByTypeUIState.ShowLoader(true) }}
+                .onCompletion { _uiState.update {  SearchByTypeUIState.ShowLoader(false) }}
+                .catch { cause: Throwable ->
+                    // TODO ON ERROR
+                }
+                .collect { result ->
+                    when (result) {
+                        is GetTypeListResult.OnFailure -> TODO()
+                        is GetTypeListResult.OnSuccess -> {
+                            _uiState.update {
+                                SearchByTypeUIState.BindTypeList(mapToDisplay(result.list))
+                            }
+                        }
+                    }
+                }
         }
     }
+}
 
-    private fun mapToDisplay(model: List<TypeModel>) = model.map { typeModel ->
-        val typeResources = TypeEnum.getTypeResource(typeModel.type)
-        TypeDisplay(
-            name = typeModel.typeName,
-            color = typeResources.color,
-            icon = typeResources.icon
-        )
-    }
+private fun mapToDisplay(model: List<TypeModel>) = model.map { typeModel ->
+    val typeResources = TypeEnum.getTypeResource(typeModel.type)
+    TypeDisplay(
+        name = typeModel.typeName,
+        color = typeResources.color,
+        icon = typeResources.icon
+    )
 }

@@ -4,6 +4,7 @@ import com.app.pokeapi.core.TypeEnum
 import com.app.pokeapi.data.service.PokeApiService
 import com.app.pokeapi.data.entities.TypeEntity
 import com.app.pokeapi.data.entities.TypeEntityList
+import com.app.pokeapi.domain.useCase.getTypeList.GetTypeListUseCaseImp
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -17,12 +18,12 @@ class GetTypeListUseCaseTest {
     @RelaxedMockK
     private lateinit var service: PokeApiService
 
-    lateinit var getTypeListUseCase: GetTypeListUseCase
+    lateinit var getTypeListUseCase: GetTypeListUseCaseImp
 
     @Before
     fun onBefore() {
         MockKAnnotations.init(this)
-        getTypeListUseCase = GetTypeListUseCase(service)
+        getTypeListUseCase = GetTypeListUseCaseImp(service)
     }
 
     @Test

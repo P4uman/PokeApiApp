@@ -4,6 +4,6 @@ import com.app.pokeapi.data.entities.TypeDetailEntity
 import com.app.pokeapi.data.entities.TypeEntityList
 
 interface PokeApiDataSource {
-    suspend fun getTypeList(): Result<TypeEntityList?>
+    suspend fun getTypeList(): TypeEntityList?
     suspend fun getTypeDetail(typeID: String): Result<TypeDetailEntity?>
 }
