@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.app.pokeapi.core.baseUI.BaseFragmentMVVM
+import com.app.pokeapi.core.baseUI.BaseFragment
 import com.app.pokeapi.databinding.FragmentSearchByTypeBinding
 import com.app.pokeapi.ui.fragment.fragmentSearchByType.adapter.TypesMenuAdapter
 import com.app.pokeapi.ui.fragment.fragmentSearchByType.model.TypeDisplay
@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 private const val GRID_SPAN_COUNT = 2
 @AndroidEntryPoint
-class SearchByTypeFragment : BaseFragmentMVVM<FragmentSearchByTypeBinding>() {
+class SearchByTypeFragment : BaseFragment<FragmentSearchByTypeBinding>() {
 
     private val viewModel: SearchByTypeViewModel by viewModels()
 

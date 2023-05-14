@@ -1,15 +1,13 @@
 package com.app.pokeapi.ui.activity.activityMainFlow
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import androidx.activity.viewModels
-import com.app.pokeapi.core.baseUI.BaseActivityMVVM
+import com.app.pokeapi.core.baseUI.BaseActivity
 import com.app.pokeapi.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainFlowActivity : BaseActivityMVVM<ActivityMainBinding>() {
+class MainFlowActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun showLoader(visible: Boolean) {
         binding.llLoaderContainer.visibility =

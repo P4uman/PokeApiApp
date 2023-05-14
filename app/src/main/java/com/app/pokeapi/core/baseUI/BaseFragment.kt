@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseFragmentMVVM<V : ViewBinding> : Fragment() {
+abstract class BaseFragment<V : ViewBinding> : Fragment() {
 
     protected val binding by lazy { inflateViewBinding(layoutInflater) }
     abstract fun inflateViewBinding(layoutInflater: LayoutInflater): V
@@ -41,8 +41,8 @@ abstract class BaseFragmentMVVM<V : ViewBinding> : Fragment() {
     protected open fun initObservers() {}
 
     protected fun showLoader(visible: Boolean) {
-        if (activity is BaseActivityMVVM<*>) {
-            (activity as BaseActivityMVVM<*>).showLoader(visible)
+        if (activity is BaseActivity<*>) {
+            (activity as BaseActivity<*>).showLoader(visible)
         }
     }
 }
