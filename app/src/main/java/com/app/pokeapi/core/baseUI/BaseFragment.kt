@@ -28,7 +28,6 @@ abstract class BaseFragment<V : ViewBinding> : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initViews()
         initListeners()
-        initObservers()
     }
 
     /**
@@ -44,11 +43,6 @@ abstract class BaseFragment<V : ViewBinding> : Fragment() {
      *  Place here listeners of view components
      */
     protected open fun initListeners() {}
-
-    /**
-     * Place here observers to viewModels
-     */
-    protected open fun initObservers() {}
 
     protected fun showLoader(visible: Boolean) {
         if (activity is BaseActivity<*>) {

@@ -13,13 +13,7 @@ abstract class BaseActivity<V: ViewBinding> : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        initObservers()
     }
-
-    /**
-     * Place here observers to viewModels
-     */
-    protected open fun initObservers(){}
 
     internal open fun showLoader(visible: Boolean) {}
 }
