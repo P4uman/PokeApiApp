@@ -1,12 +1,15 @@
 package com.app.pokeapi.ui.fragment.fragmentSearchByType
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.app.pokeapi.core.baseUI.BaseFragment
+import com.app.pokeapi.core.extensions.collectState
 import com.app.pokeapi.databinding.FragmentSearchByTypeBinding
 import com.app.pokeapi.ui.fragment.fragmentSearchByType.adapter.TypesMenuAdapter
+import com.app.pokeapi.ui.fragment.fragmentSearchByType.model.SearchByTypeUIState
 import com.app.pokeapi.ui.fragment.fragmentSearchByType.model.TypeDisplay
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,19 +23,19 @@ class SearchByTypeFragment : BaseFragment<FragmentSearchByTypeBinding>() {
         onTypeMenuClicked(typeDisplay)
     }
 
+    override fun initUIState() {
+        super.initUIState()
+        collectState(viewModel.uiState) {state ->
+            when (state) {
+                is SearchByTypeUIState.BindTypeList ->  bindTypesMenu(state.list)
+                is SearchByTypeUIState.ShowLoader -> showLoader(state.visible)
+            }
+        }
+    }
     override fun initViews() {
         super.initViews()
         binding.rvTypeList.layoutManager = GridLayoutManager(context, GRID_SPAN_COUNT)
         binding.rvTypeList.adapter = typesAdapter
-    }
-
-    override fun initObservers() {
-        viewModel.showLoader.observe(viewLifecycleOwner) { loaderVisible ->
-            showLoader(loaderVisible)
-        }
-        viewModel.typeListDisplay.observe(viewLifecycleOwner) { typeList ->
-            bindTypesMenu(typeList)
-        }
     }
 
     private fun onTypeMenuClicked(typeDisplay: TypeDisplay) {
