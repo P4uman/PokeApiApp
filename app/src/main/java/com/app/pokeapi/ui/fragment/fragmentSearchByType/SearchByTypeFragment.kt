@@ -1,5 +1,6 @@
 package com.app.pokeapi.ui.fragment.fragmentSearchByType
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
@@ -11,6 +12,8 @@ import com.app.pokeapi.databinding.FragmentSearchByTypeBinding
 import com.app.pokeapi.ui.activity.activityMainFlow.LoaderViewModel
 import com.app.pokeapi.ui.fragment.fragmentSearchByType.adapter.TypesMenuAdapter
 import com.app.pokeapi.ui.fragment.fragmentSearchByType.model.TypeDisplay
+import com.app.pokeapi.ui.fragment.fragmentTypeDetail.TypeDetailFragment
+import com.app.pokeapi.ui.fragment.fragmentTypeDetail.model.TypeDetailDisplay
 import dagger.hilt.android.AndroidEntryPoint
 
 private const val GRID_SPAN_COUNT = 2

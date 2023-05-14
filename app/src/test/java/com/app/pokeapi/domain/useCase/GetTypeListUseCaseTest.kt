@@ -1,9 +1,9 @@
 package com.app.pokeapi.domain.useCase
 
 import com.app.pokeapi.core.TypeEnum
-import com.app.pokeapi.data.network.TypesService
-import com.app.pokeapi.data.network.entities.TypeEntity
-import com.app.pokeapi.data.network.entities.TypeEntityList
+import com.app.pokeapi.data.service.PokeApiService
+import com.app.pokeapi.data.entities.TypeEntity
+import com.app.pokeapi.data.entities.TypeEntityList
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -15,7 +15,7 @@ import org.junit.Test
 class GetTypeListUseCaseTest {
 
     @RelaxedMockK
-    private lateinit var service: TypesService
+    private lateinit var service: PokeApiService
 
     lateinit var getTypeListUseCase: GetTypeListUseCase
 

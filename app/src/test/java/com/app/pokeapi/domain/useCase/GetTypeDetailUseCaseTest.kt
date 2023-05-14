@@ -1,9 +1,9 @@
 package com.app.pokeapi.domain.useCase
 
 import com.app.pokeapi.data.network.TypeDetailService
-import com.app.pokeapi.data.network.entities.PokemonShortEntity
-import com.app.pokeapi.data.network.entities.PokemonShortInnerEntity
-import com.app.pokeapi.data.network.entities.TypeDetailEntity
+import com.app.pokeapi.data.entities.PokemonShortEntity
+import com.app.pokeapi.data.entities.PokemonShortInnerEntity
+import com.app.pokeapi.data.entities.TypeDetailEntity
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify

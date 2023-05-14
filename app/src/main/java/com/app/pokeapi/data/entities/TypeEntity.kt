@@ -1,4 +1,4 @@
-package com.app.pokeapi.data.network.entities
+package com.app.pokeapi.data.entities
 
 import com.google.gson.annotations.SerializedName
 

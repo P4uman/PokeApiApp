@@ -1,14 +1,14 @@
 package com.app.pokeapi.domain.useCase
 
 import com.app.pokeapi.core.TypeEnum
-import com.app.pokeapi.data.network.TypesService
-import com.app.pokeapi.data.network.entities.TypeEntity
+import com.app.pokeapi.data.service.PokeApiService
+import com.app.pokeapi.data.entities.TypeEntity
 import com.app.pokeapi.domain.model.TypeModel
 import javax.inject.Inject
 
 class GetTypeListUseCase
 @Inject constructor(
-    private val service: TypesService
+    private val service: PokeApiService
 ){
 
     suspend operator fun invoke(): List<TypeModel> {

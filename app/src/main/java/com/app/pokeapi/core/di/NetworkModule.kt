@@ -1,6 +1,6 @@
 package com.app.pokeapi.core.di
 
-import com.app.pokeapi.data.network.PokeApi
+import com.app.pokeapi.data.service.PokeApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
