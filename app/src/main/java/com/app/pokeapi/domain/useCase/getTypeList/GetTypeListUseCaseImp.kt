@@ -3,8 +3,6 @@ package com.app.pokeapi.domain.useCase.getTypeList
 import com.app.pokeapi.core.TypeEnum
 import com.app.pokeapi.data.entities.TypeEntity
 import com.app.pokeapi.domain.core.FailureTypes
-import com.app.pokeapi.domain.core.UseCaseResult
-import com.app.pokeapi.domain.model.TypeListModel
 import com.app.pokeapi.domain.model.TypeModel
 import com.app.pokeapi.domain.repository.PokeApiRepository
 import com.app.pokeapi.domain.useCase.getTypeList.model.GetTypeListResult
@@ -17,9 +15,9 @@ class GetTypeListUseCaseImp
     private val repository: PokeApiRepository
 ): GetTypeListUseCase{
 
-    override suspend fun invoke(): Flow<UseCaseResult> = getTypeList()
+    override suspend fun invoke(): Flow<GetTypeListResult> = getTypeList()
 
-    private suspend fun getTypeList() : Flow<UseCaseResult> = flow {
+    private suspend fun getTypeList() : Flow<GetTypeListResult> = flow {
         runCatching {
             repository.getTypeList()
         }.map {entityList ->
@@ -27,14 +25,14 @@ class GetTypeListUseCaseImp
                 mapToDomain(entity)
             } ?: emptyList()
 
-            val result = TypeListModel(modelList.filterNotNull())
-            if (result.list.isNotEmpty()) {
-                emit(UseCaseResult.OnSuccess(result))
+            val result = modelList.filterNotNull()
+            if (result.isNotEmpty()) {
+                emit(GetTypeListResult.OnSuccess(result))
             } else {
-                emit (UseCaseResult.OnFailure(FailureTypes.Empty))
+                emit (GetTypeListResult.OnFailure(FailureTypes.Empty))
             }
         }.getOrElse {
-            emit(UseCaseResult.OnFailure(FailureTypes.GeneralError))
+            emit(GetTypeListResult.OnFailure(FailureTypes.GeneralError))
         }
     }
 

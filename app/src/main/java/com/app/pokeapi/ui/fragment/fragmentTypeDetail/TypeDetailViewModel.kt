@@ -3,7 +3,8 @@ package com.app.pokeapi.ui.fragment.fragmentTypeDetail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.pokeapi.domain.model.TypeDetailModel
-import com.app.pokeapi.domain.useCase.getTypeDetail.GetTypeDetailUseCaseImp
+import com.app.pokeapi.domain.useCase.GetTypeDetailUseCase
+import com.app.pokeapi.ui.fragment.fragmentSearchByType.model.SearchByTypeUIState
 import com.app.pokeapi.ui.fragment.fragmentTypeDetail.model.PokemonShortDisplay
 import com.app.pokeapi.ui.fragment.fragmentTypeDetail.model.TypeDetailDisplay
 import com.app.pokeapi.ui.fragment.fragmentTypeDetail.model.TypeDetailUIState
@@ -17,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class TypeDetailViewModel
 @Inject constructor(
-    val getTypeDetailUseCaseImp: GetTypeDetailUseCaseImp
+    val getTypeDetailUseCase: GetTypeDetailUseCase
 ) : ViewModel() {
 
     private var _uiState: MutableStateFlow<TypeDetailUIState> =
@@ -27,7 +28,7 @@ class TypeDetailViewModel
     fun init(typeID: String) {
         viewModelScope.launch {
             _uiState.update { TypeDetailUIState.ShowLoader(true) }
-            val result =  mapToDisplay(getTypeDetailUseCaseImp(typeID))
+            val result =  mapToDisplay(getTypeDetailUseCase(typeID))
             _uiState.update { TypeDetailUIState.BindTypeDetail(result)  }
             _uiState.update { TypeDetailUIState.ShowLoader(false) }
         }

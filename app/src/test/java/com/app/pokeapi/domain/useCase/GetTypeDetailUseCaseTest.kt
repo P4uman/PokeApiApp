@@ -4,7 +4,6 @@ import com.app.pokeapi.data.network.TypeDetailService
 import com.app.pokeapi.data.entities.PokemonShortEntity
 import com.app.pokeapi.data.entities.PokemonShortInnerEntity
 import com.app.pokeapi.data.entities.TypeDetailEntity
-import com.app.pokeapi.domain.useCase.getTypeDetail.GetTypeDetailUseCaseImp
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -19,12 +18,12 @@ class GetTypeDetailUseCaseTest {
     @RelaxedMockK
     private lateinit var service: TypeDetailService
 
-    lateinit var getTypeListUseCase: GetTypeDetailUseCaseImp
+    lateinit var getTypeListUseCase: GetTypeDetailUseCase
 
     @Before
     fun onBefore() {
         MockKAnnotations.init(this)
-        getTypeListUseCase = GetTypeDetailUseCaseImp(service)
+        getTypeListUseCase = GetTypeDetailUseCase(service)
     }
 
     @Test
