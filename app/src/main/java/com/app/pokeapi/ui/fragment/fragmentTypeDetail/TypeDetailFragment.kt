@@ -13,7 +13,7 @@ import com.app.pokeapi.ui.fragment.fragmentTypeDetail.model.TypeDetailUIState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TypeDetailFragment : BaseFragment<FragmentTypeDetailBinding>() {
+class TypeDetailFragment : com.app.pokeapi.core.baseUI.BaseFragment<FragmentTypeDetailBinding>() {
 
     private val viewModel: TypeDetailViewModel by viewModels()
     private val args: TypeDetailFragmentArgs by navArgs()

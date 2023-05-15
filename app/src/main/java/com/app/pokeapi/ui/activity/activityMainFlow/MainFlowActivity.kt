@@ -1,7 +1,6 @@
 package com.app.pokeapi.ui.activity.activityMainFlow
 
 import android.view.LayoutInflater
-import android.view.View
 import com.app.pokeapi.core.baseUI.BaseActivity
 import com.app.pokeapi.core.extensions.hide
 import com.app.pokeapi.core.extensions.show

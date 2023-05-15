@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 private const val GRID_SPAN_COUNT = 2
 
 @AndroidEntryPoint
-class SearchByTypeFragment : BaseFragment<FragmentSearchByTypeBinding>() {
+class SearchByTypeFragment : com.app.pokeapi.core.baseUI.BaseFragment<FragmentSearchByTypeBinding>() {
 
     private val viewModel: SearchByTypeViewModel by viewModels()
 

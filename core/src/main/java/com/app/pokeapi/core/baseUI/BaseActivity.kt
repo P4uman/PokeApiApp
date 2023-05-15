@@ -15,8 +15,8 @@ abstract class BaseActivity<V: ViewBinding> : AppCompatActivity(){
         setContentView(binding.root)
     }
 
-    internal open fun showLoader(visible: Boolean) {}
+    open fun showLoader(visible: Boolean) {}
 
-    internal open fun showGenericError(error: String?, onRetry: () -> Unit) {}
-    internal open fun hideGenericError() {}
+    open fun showGenericError(error: String?, onRetry: () -> Unit) {}
+    open fun hideGenericError() {}
 }
