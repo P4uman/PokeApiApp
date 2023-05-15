@@ -7,9 +7,13 @@
     <color name="lochmara">#0075BE</color>
     <color name="buddha_gold">#D5A100</color>
     <color name="supernova">#FFCC00</color>
+    <color name="black">#000</color>
 
     <color name="background_color">@color/lavender_blush</color>
+    <color name="background_error">@color/lavender_blush</color>
     <color name="background_loader">@color/charleston_green_30</color>
+
+    <color name="text_color">@color/black</color>
 
     <color name="type_bug">#92BC2C</color>
     <color name="type_dark">#595761</color>

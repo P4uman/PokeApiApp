@@ -30,14 +30,16 @@ class SearchByTypeViewModel
     private fun getTypeListMenu() {
         viewModelScope.launch {
             getTypeListUseCase.invoke()
-                .onStart { _uiState.update {  SearchByTypeUIState.ShowLoader(true) }}
-                .onCompletion { _uiState.update {  SearchByTypeUIState.ShowLoader(false) }}
+                .onStart { _uiState.update { SearchByTypeUIState.ShowLoader(true) } }
+                .onCompletion { _uiState.update { SearchByTypeUIState.ShowLoader(false) } }
                 .catch { cause: Throwable ->
-                    // TODO ON ERROR
+                    handleGetTypeListMenuError(cause.message)
                 }
                 .collect { result ->
                     when (result) {
-                        is GetTypeListResult.OnFailure -> TODO()
+                        is GetTypeListResult.OnFailure -> {
+                            handleGetTypeListMenuError(result.failure.name)
+                        }
                         is GetTypeListResult.OnSuccess -> {
                             _uiState.update {
                                 SearchByTypeUIState.BindTypeList(mapToDisplay(result.list))
@@ -47,13 +49,21 @@ class SearchByTypeViewModel
                 }
         }
     }
-}
 
-private fun mapToDisplay(model: List<TypeModel>) = model.map { typeModel ->
-    val typeResources = TypeEnum.getTypeResource(typeModel.type)
-    TypeDisplay(
-        name = typeModel.typeName,
-        color = typeResources.color,
-        icon = typeResources.icon
-    )
+    private fun handleGetTypeListMenuError(error: String?) {
+        _uiState.update {
+            SearchByTypeUIState.ShowGenericError(error) {
+                getTypeListMenu()
+            }
+        }
+    }
+
+    private fun mapToDisplay(model: List<TypeModel>) = model.map { typeModel ->
+        val typeResources = TypeEnum.getTypeResource(typeModel.type)
+        TypeDisplay(
+            name = typeModel.typeName,
+            color = typeResources.color,
+            icon = typeResources.icon
+        )
+    }
 }

@@ -2,4 +2,6 @@
     <string name="app_name">PokeApiApp</string>
     <string name="type_search_title">Search by type</string>
     <string name="type_detail_title">Type detail</string>
+
+    <string name="button_retry">Refresh</string>
 </resources>

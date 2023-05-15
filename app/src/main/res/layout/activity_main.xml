@@ -19,6 +19,37 @@
         app:navGraph="@navigation/main_flow_nav_graph" />
 
     <LinearLayout
+        android:id="@+id/llErrorContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_error"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/txtError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            tools:text="Esto es un mensaje de error"
+            android:gravity="center"
+            />
+
+        <Button
+            android:id="@+id/btnRetry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_normal"
+            android:layout_marginStart="@dimen/space_normal"
+            android:layout_marginEnd="@dimen/space_normal"
+            android:text="@string/button_retry"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/llLoaderContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

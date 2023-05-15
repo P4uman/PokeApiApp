@@ -16,4 +16,7 @@ abstract class BaseActivity<V: ViewBinding> : AppCompatActivity(){
     }
 
     internal open fun showLoader(visible: Boolean) {}
+
+    internal open fun showGenericError(error: String?, onRetry: () -> Unit) {}
+    internal open fun hideGenericError() {}
 }

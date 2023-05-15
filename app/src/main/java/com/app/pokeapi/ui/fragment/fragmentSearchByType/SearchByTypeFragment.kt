@@ -14,6 +14,7 @@ import com.app.pokeapi.ui.fragment.fragmentSearchByType.model.TypeDisplay
 import dagger.hilt.android.AndroidEntryPoint
 
 private const val GRID_SPAN_COUNT = 2
+
 @AndroidEntryPoint
 class SearchByTypeFragment : BaseFragment<FragmentSearchByTypeBinding>() {
 
@@ -25,13 +26,18 @@ class SearchByTypeFragment : BaseFragment<FragmentSearchByTypeBinding>() {
 
     override fun initUIState() {
         super.initUIState()
-        collectState(viewModel.uiState) {state ->
+        collectState(viewModel.uiState) { state ->
             when (state) {
-                is SearchByTypeUIState.BindTypeList ->  bindTypesMenu(state.list)
+                is SearchByTypeUIState.BindTypeList -> bindTypesMenu(state.list)
                 is SearchByTypeUIState.ShowLoader -> showLoader(state.visible)
+                is SearchByTypeUIState.ShowGenericError -> showGenericError(
+                    state.error,
+                    state.onRetry
+                )
             }
         }
     }
+
     override fun initViews() {
         super.initViews()
         binding.rvTypeList.layoutManager = GridLayoutManager(context, GRID_SPAN_COUNT)
@@ -39,13 +45,17 @@ class SearchByTypeFragment : BaseFragment<FragmentSearchByTypeBinding>() {
     }
 
     private fun onTypeMenuClicked(typeDisplay: TypeDisplay) {
-        findNavController().navigate(SearchByTypeFragmentDirections.actionSearchByTypeFragmentToTypeDetailFragment(typeDisplay.name))
+        findNavController().navigate(
+            SearchByTypeFragmentDirections.actionSearchByTypeFragmentToTypeDetailFragment(
+                typeDisplay.name
+            )
+        )
     }
 
-    private fun  bindTypesMenu(typesMenu: List<TypeDisplay>) {
+    private fun bindTypesMenu(typesMenu: List<TypeDisplay>) {
         typesAdapter.bindData(typesMenu)
     }
 
-    override fun inflateViewBinding(layoutInflater: LayoutInflater)
-    = FragmentSearchByTypeBinding.inflate(layoutInflater)
+    override fun inflateViewBinding(layoutInflater: LayoutInflater) =
+        FragmentSearchByTypeBinding.inflate(layoutInflater)
 }

@@ -45,8 +45,10 @@ abstract class BaseFragment<V : ViewBinding> : Fragment() {
     protected open fun initListeners() {}
 
     protected fun showLoader(visible: Boolean) {
-        if (activity is BaseActivity<*>) {
-            (activity as BaseActivity<*>).showLoader(visible)
-        }
+        (activity as? BaseActivity<*>)?.showLoader(visible)
+    }
+
+    protected fun showGenericError(error: String?, onRetry: () -> Unit) {
+        (activity as? BaseActivity<*>)?.showGenericError(error, onRetry)
     }
 }
