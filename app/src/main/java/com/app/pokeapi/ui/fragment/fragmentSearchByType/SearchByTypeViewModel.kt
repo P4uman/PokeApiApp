@@ -3,6 +3,8 @@ package com.app.pokeapi.ui.fragment.fragmentSearchByType
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.pokeapi.core.TypeEnum
+import com.app.pokeapi.domain.core.UseCaseResult
+import com.app.pokeapi.domain.model.TypeListModel
 import com.app.pokeapi.domain.model.TypeModel
 import com.app.pokeapi.domain.useCase.getTypeList.GetTypeListUseCase
 import com.app.pokeapi.domain.useCase.getTypeList.model.GetTypeListResult
@@ -37,13 +39,15 @@ class SearchByTypeViewModel
                 }
                 .collect { result ->
                     when (result) {
-                        is GetTypeListResult.OnFailure -> {
+                        is UseCaseResult.OnFailure -> {
                             handleGetTypeListMenuError(result.failure.name)
                         }
-                        is GetTypeListResult.OnSuccess -> {
+                        is UseCaseResult.OnSuccess<*> -> {
+                            (result.result as? TypeListModel)?.let {model ->
                             _uiState.update {
-                                SearchByTypeUIState.BindTypeList(mapToDisplay(result.list))
-                            }
+                                    SearchByTypeUIState.BindTypeList(mapToDisplay(model))
+                                }
+                            } ?: run { handleGetTypeListMenuError(null) }
                         }
                     }
                 }
@@ -58,7 +62,7 @@ class SearchByTypeViewModel
         }
     }
 
-    private fun mapToDisplay(model: List<TypeModel>) = model.map { typeModel ->
+    private fun mapToDisplay(model: TypeListModel) = model.list.map { typeModel ->
         val typeResources = TypeEnum.getTypeResource(typeModel.type)
         TypeDisplay(
             name = typeModel.typeName,
