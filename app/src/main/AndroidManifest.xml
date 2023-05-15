@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PokeApiApp">
         <activity
-            android:name=".ui.activity.activityMainFlow.MainFlowActivity"
+            android:name=".features.searchByType.activity.activityMainFlow.MainFlowActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

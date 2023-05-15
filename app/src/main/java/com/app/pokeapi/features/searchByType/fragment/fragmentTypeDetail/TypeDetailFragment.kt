@@ -1,15 +1,14 @@
-package com.app.pokeapi.ui.fragment.fragmentTypeDetail
+package com.app.pokeapi.features.searchByType.fragment.fragmentTypeDetail
 
 import android.view.LayoutInflater
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.pokeapi.core.baseUI.BaseFragment
 import com.app.pokeapi.core.extensions.collectState
 import com.app.pokeapi.databinding.FragmentTypeDetailBinding
-import com.app.pokeapi.ui.fragment.fragmentTypeDetail.adapter.PokemonListAdapter
-import com.app.pokeapi.ui.fragment.fragmentTypeDetail.model.TypeDetailDisplay
-import com.app.pokeapi.ui.fragment.fragmentTypeDetail.model.TypeDetailUIState
+import com.app.pokeapi.features.searchByType.fragment.fragmentTypeDetail.adapter.PokemonListAdapter
+import com.app.pokeapi.features.searchByType.fragment.fragmentTypeDetail.model.TypeDetailDisplay
+import com.app.pokeapi.features.searchByType.fragment.fragmentTypeDetail.model.TypeDetailUIState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

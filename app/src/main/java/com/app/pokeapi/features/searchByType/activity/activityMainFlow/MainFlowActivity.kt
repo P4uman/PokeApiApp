@@ -1,4 +1,4 @@
-package com.app.pokeapi.ui.activity.activityMainFlow
+package com.app.pokeapi.features.searchByType.activity.activityMainFlow
 
 import android.view.LayoutInflater
 import com.app.pokeapi.core.baseUI.BaseActivity

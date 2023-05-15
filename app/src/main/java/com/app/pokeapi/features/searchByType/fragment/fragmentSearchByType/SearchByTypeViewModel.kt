@@ -1,4 +1,4 @@
-package com.app.pokeapi.ui.fragment.fragmentSearchByType
+package com.app.pokeapi.features.searchByType.fragment.fragmentSearchByType
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,8 +6,8 @@ import com.app.pokeapi.pokeapi.domain.model.TypeModel
 import com.app.pokeapi.pokeapi.domain.useCase.getTypeList.GetTypeListUseCase
 import com.app.pokeapi.pokeapi.domain.useCase.getTypeList.model.GetTypeListResult
 import com.app.pokeapi.pokeapi.domain.useCase.getTypeList.model.TypeEnum
-import com.app.pokeapi.ui.fragment.fragmentSearchByType.model.SearchByTypeUIState
-import com.app.pokeapi.ui.fragment.fragmentSearchByType.model.TypeDisplay
+import com.app.pokeapi.features.searchByType.fragment.fragmentSearchByType.model.SearchByTypeUIState
+import com.app.pokeapi.features.searchByType.fragment.fragmentSearchByType.model.TypeDisplay
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

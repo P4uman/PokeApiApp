@@ -1,13 +1,13 @@
-package com.app.pokeapi.ui.fragment.fragmentTypeDetail
+package com.app.pokeapi.features.searchByType.fragment.fragmentTypeDetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.pokeapi.pokeapi.domain.model.TypeDetailModel
 import com.app.pokeapi.pokeapi.domain.useCase.getTypeDetail.GetTypeDetailUseCase
 import com.app.pokeapi.pokeapi.domain.useCase.getTypeDetail.model.GetTypeDetailResult
-import com.app.pokeapi.ui.fragment.fragmentTypeDetail.model.PokemonShortDisplay
-import com.app.pokeapi.ui.fragment.fragmentTypeDetail.model.TypeDetailDisplay
-import com.app.pokeapi.ui.fragment.fragmentTypeDetail.model.TypeDetailUIState
+import com.app.pokeapi.features.searchByType.fragment.fragmentTypeDetail.model.PokemonShortDisplay
+import com.app.pokeapi.features.searchByType.fragment.fragmentTypeDetail.model.TypeDetailDisplay
+import com.app.pokeapi.features.searchByType.fragment.fragmentTypeDetail.model.TypeDetailUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

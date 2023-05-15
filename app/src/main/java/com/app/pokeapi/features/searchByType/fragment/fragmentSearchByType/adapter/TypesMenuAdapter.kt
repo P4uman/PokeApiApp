@@ -1,11 +1,11 @@
-package com.app.pokeapi.ui.fragment.fragmentSearchByType.adapter
+package com.app.pokeapi.features.searchByType.fragment.fragmentSearchByType.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.app.pokeapi.databinding.ItemTypeBinding
-import com.app.pokeapi.ui.fragment.fragmentSearchByType.model.TypeDisplay
+import com.app.pokeapi.features.searchByType.fragment.fragmentSearchByType.model.TypeDisplay
 
 class TypesMenuAdapter(
 private val onItemClickListener: (TypeDisplay) -> Unit

@@ -1,4 +1,4 @@
-package com.app.pokeapi.ui.activity.activityMainFlow
+package com.app.pokeapi.features.activity.activityMainFlow
 
 import org.junit.Before
 import org.junit.Test

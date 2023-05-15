@@ -1,4 +1,4 @@
-package com.app.pokeapi.ui.fragment.fragmentSearchByType.model
+package com.app.pokeapi.features.searchByType.fragment.fragmentSearchByType.model
 
 sealed class SearchByTypeUIState {
 

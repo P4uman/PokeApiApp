@@ -1,10 +1,11 @@
-package com.app.pokeapi.ui.fragment.fragmentSearchByType
+package com.app.pokeapi.features.fragment.fragmentSearchByType
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.app.pokeapi.pokeapi.domain.useCase.getTypeList.model.TypeEnum
 import com.app.pokeapi.domain.model.TypeModel
 import com.app.pokeapi.domain.useCase.getTypeList.GetTypeListUseCaseImp
-import com.app.pokeapi.ui.fragment.fragmentSearchByType.model.TypeDisplay
+import com.app.pokeapi.features.searchByType.fragment.fragmentSearchByType.model.TypeDisplay
+import com.app.pokeapi.features.searchByType.fragment.fragmentSearchByType.SearchByTypeViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.RelaxedMockK

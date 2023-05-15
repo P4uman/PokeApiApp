@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/searchByTypeFragment"
-        android:name="com.app.pokeapi.ui.fragment.fragmentSearchByType.SearchByTypeFragment"
+        android:name="com.app.pokeapi.features.searchByType.fragment.fragmentSearchByType.SearchByTypeFragment"
         android:label="@string/type_search_title"
         tools:layout="@layout/fragment_search_by_type" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/typeDetailFragment"
-        android:name="com.app.pokeapi.ui.fragment.fragmentTypeDetail.TypeDetailFragment"
+        android:name="com.app.pokeapi.features.searchByType.fragment.fragmentTypeDetail.TypeDetailFragment"
         android:label="@string/type_detail_title"
         tools:layout="@layout/fragment_type_detail" >
         <argument

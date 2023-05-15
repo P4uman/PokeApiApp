@@ -1,16 +1,14 @@
-package com.app.pokeapi.ui.fragment.fragmentSearchByType
+package com.app.pokeapi.features.searchByType.fragment.fragmentSearchByType
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.app.pokeapi.core.baseUI.BaseFragment
 import com.app.pokeapi.core.extensions.collectState
 import com.app.pokeapi.databinding.FragmentSearchByTypeBinding
-import com.app.pokeapi.ui.fragment.fragmentSearchByType.adapter.TypesMenuAdapter
-import com.app.pokeapi.ui.fragment.fragmentSearchByType.model.SearchByTypeUIState
-import com.app.pokeapi.ui.fragment.fragmentSearchByType.model.TypeDisplay
+import com.app.pokeapi.features.searchByType.fragment.fragmentSearchByType.adapter.TypesMenuAdapter
+import com.app.pokeapi.features.searchByType.fragment.fragmentSearchByType.model.SearchByTypeUIState
+import com.app.pokeapi.features.searchByType.fragment.fragmentSearchByType.model.TypeDisplay
 import dagger.hilt.android.AndroidEntryPoint
 
 private const val GRID_SPAN_COUNT = 2

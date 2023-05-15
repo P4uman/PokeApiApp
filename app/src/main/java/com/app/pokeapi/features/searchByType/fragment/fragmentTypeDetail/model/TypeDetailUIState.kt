@@ -1,4 +1,4 @@
-package com.app.pokeapi.ui.fragment.fragmentTypeDetail.model
+package com.app.pokeapi.features.searchByType.fragment.fragmentTypeDetail.model
 
 sealed class TypeDetailUIState {
 
