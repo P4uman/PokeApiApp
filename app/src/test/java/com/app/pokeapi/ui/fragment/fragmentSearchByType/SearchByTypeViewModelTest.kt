@@ -1,7 +1,7 @@
 package com.app.pokeapi.ui.fragment.fragmentSearchByType
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.app.pokeapi.core.TypeEnum
+import com.app.pokeapi.pokeapi.domain.useCase.getTypeList.model.TypeEnum
 import com.app.pokeapi.domain.model.TypeModel
 import com.app.pokeapi.domain.useCase.getTypeList.GetTypeListUseCaseImp
 import com.app.pokeapi.ui.fragment.fragmentSearchByType.model.TypeDisplay

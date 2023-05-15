@@ -1,6 +1,6 @@
 package com.app.pokeapi.domain.useCase
 
-import com.app.pokeapi.core.TypeEnum
+import com.app.pokeapi.pokeapi.domain.useCase.getTypeList.model.TypeEnum
 import com.app.pokeapi.data.service.PokeApiService
 import com.app.pokeapi.data.entities.TypeEntity
 import com.app.pokeapi.data.entities.TypeEntityList

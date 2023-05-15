@@ -17,7 +17,6 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "BASE_URL_POKEAPI", "\"https://pokeapi.co\""
     }
 
     buildTypes {
@@ -40,6 +39,7 @@ android {
 
 dependencies {
     implementation project(':core')
+    implementation project(':pokeapi')
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.5.0'
@@ -49,13 +49,6 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:1.5.5"
     implementation "androidx.activity:activity-ktx:1.5.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
-
-
-    // Retrofit
-    implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
-    // Logging
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
 
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"

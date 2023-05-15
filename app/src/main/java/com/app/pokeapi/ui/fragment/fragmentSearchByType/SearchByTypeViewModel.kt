@@ -2,10 +2,10 @@ package com.app.pokeapi.ui.fragment.fragmentSearchByType
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.app.pokeapi.core.TypeEnum
-import com.app.pokeapi.domain.model.TypeModel
-import com.app.pokeapi.domain.useCase.getTypeList.GetTypeListUseCase
-import com.app.pokeapi.domain.useCase.getTypeList.model.GetTypeListResult
+import com.app.pokeapi.pokeapi.domain.model.TypeModel
+import com.app.pokeapi.pokeapi.domain.useCase.getTypeList.GetTypeListUseCase
+import com.app.pokeapi.pokeapi.domain.useCase.getTypeList.model.GetTypeListResult
+import com.app.pokeapi.pokeapi.domain.useCase.getTypeList.model.TypeEnum
 import com.app.pokeapi.ui.fragment.fragmentSearchByType.model.SearchByTypeUIState
 import com.app.pokeapi.ui.fragment.fragmentSearchByType.model.TypeDisplay
 import dagger.hilt.android.lifecycle.HiltViewModel
