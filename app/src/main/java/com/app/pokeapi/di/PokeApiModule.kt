@@ -7,6 +7,8 @@ import com.app.pokeapi.data.service.PokeApi
 import com.app.pokeapi.data.service.PokeApiService
 import com.app.pokeapi.domain.repository.PokeApiRepository
 import com.app.pokeapi.domain.repository.PokeApiRepositoryImp
+import com.app.pokeapi.domain.useCase.getTypeDetail.GetTypeDetailUseCase
+import com.app.pokeapi.domain.useCase.getTypeDetail.GetTypeDetailUseCaseImp
 import com.app.pokeapi.domain.useCase.getTypeList.GetTypeListUseCase
 import com.app.pokeapi.domain.useCase.getTypeList.GetTypeListUseCaseImp
 import dagger.Binds
@@ -71,4 +73,8 @@ abstract class DomainModule {
     @Binds
     @Singleton
     abstract fun provideGetTypeListUseCase(imp: GetTypeListUseCaseImp): GetTypeListUseCase
+
+    @Binds
+    @Singleton
+    abstract fun provideGetTypeDetailUseCase(imp: GetTypeDetailUseCaseImp): GetTypeDetailUseCase
 }

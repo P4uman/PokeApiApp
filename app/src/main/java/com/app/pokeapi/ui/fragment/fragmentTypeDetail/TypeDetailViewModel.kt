@@ -3,22 +3,20 @@ package com.app.pokeapi.ui.fragment.fragmentTypeDetail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.pokeapi.domain.model.TypeDetailModel
-import com.app.pokeapi.domain.useCase.GetTypeDetailUseCase
-import com.app.pokeapi.ui.fragment.fragmentSearchByType.model.SearchByTypeUIState
+import com.app.pokeapi.domain.useCase.getTypeDetail.GetTypeDetailUseCase
+import com.app.pokeapi.domain.useCase.getTypeDetail.model.GetTypeDetailResult
 import com.app.pokeapi.ui.fragment.fragmentTypeDetail.model.PokemonShortDisplay
 import com.app.pokeapi.ui.fragment.fragmentTypeDetail.model.TypeDetailDisplay
 import com.app.pokeapi.ui.fragment.fragmentTypeDetail.model.TypeDetailUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class TypeDetailViewModel
 @Inject constructor(
-    val getTypeDetailUseCase: GetTypeDetailUseCase
+    private val getTypeDetailUseCase: GetTypeDetailUseCase
 ) : ViewModel() {
 
     private var _uiState: MutableStateFlow<TypeDetailUIState> =
@@ -26,11 +24,41 @@ class TypeDetailViewModel
     val uiState get() = _uiState.asStateFlow()
 
     fun init(typeID: String) {
+        getTypeDetail(typeID)
+    }
+
+    private fun getTypeDetail(typeID: String) {
         viewModelScope.launch {
-            _uiState.update { TypeDetailUIState.ShowLoader(true) }
-            val result =  mapToDisplay(getTypeDetailUseCase(typeID))
-            _uiState.update { TypeDetailUIState.BindTypeDetail(result)  }
-            _uiState.update { TypeDetailUIState.ShowLoader(false) }
+            getTypeDetailUseCase.invoke(typeID)
+                .onStart {
+                    _uiState.update { TypeDetailUIState.ShowLoader(true) }
+                }
+                .onCompletion {
+                    _uiState.update { TypeDetailUIState.ShowLoader(false) }
+                }
+                .catch {
+                    handleGetTypeDetailError(it.message, typeID)
+                }
+                .collect { result ->
+                    when (result) {
+                        is GetTypeDetailResult.OnFailure -> {
+                            handleGetTypeDetailError(result.failure.name, typeID)
+                        }
+                        is GetTypeDetailResult.OnSuccess -> {
+                            _uiState.update {
+                                TypeDetailUIState.BindTypeDetail(mapToDisplay(result.result))
+                            }
+                        }
+                    }
+                }
+        }
+    }
+
+    private fun handleGetTypeDetailError(error: String?, typeID: String) {
+        _uiState.update {
+            TypeDetailUIState.ShowGenericError(error) {
+                getTypeDetail(typeID)
+            }
         }
     }
 

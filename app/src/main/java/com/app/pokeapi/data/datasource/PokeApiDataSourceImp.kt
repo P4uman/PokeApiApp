@@ -12,10 +12,6 @@ class PokeApiDataSourceImp @Inject constructor(
     override suspend fun getTypeList(): TypeEntityList? =
         service.getTypeList()
 
-    override suspend fun getTypeDetail(typeID: String): Result<TypeDetailEntity?> =
-        runCatching {
-            service.getTypeDetail(typeID)
-        }
-
-
+    override suspend fun getTypeDetail(typeID: String): TypeDetailEntity? =
+        service.getTypeDetail(typeID)
 }
