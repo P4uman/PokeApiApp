@@ -1,7 +1,7 @@
 package com.app.pokeapi.pokeapi.domain.repository
 
-import com.app.pokeapi.pokeapi.data.entities.TypeDetailEntity
-import com.app.pokeapi.pokeapi.data.entities.TypeEntityList
+import com.app.pokeapi.entities.TypeDetailEntity
+import com.app.pokeapi.entities.TypeEntityList
 
 interface PokeApiRepository {
 

@@ -1,7 +1,7 @@
-package com.app.pokeapi.pokeapi.data.service
+package com.app.pokeapi.service
 
-import com.app.pokeapi.pokeapi.data.entities.TypeDetailEntity
-import com.app.pokeapi.pokeapi.data.entities.TypeEntityList
+import com.app.pokeapi.entities.TypeDetailEntity
+import com.app.pokeapi.entities.TypeEntityList
 import javax.inject.Inject
 
 class PokeApiService

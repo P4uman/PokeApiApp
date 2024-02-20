@@ -1,17 +1,17 @@
 package com.app.pokeapi.pokeapi.domain.repository
 
-import com.app.pokeapi.pokeapi.data.datasource.PokeApiDataSource
-import com.app.pokeapi.pokeapi.data.entities.TypeDetailEntity
-import com.app.pokeapi.pokeapi.data.entities.TypeEntityList
+import com.app.pokeapi.entities.TypeDetailEntity
+import com.app.pokeapi.entities.TypeEntityList
+import com.app.pokeapi.service.PokeApiService
 import javax.inject.Inject
 
 class PokeApiRepositoryImp @Inject constructor(
-    private val dataSource: PokeApiDataSource
+    private val service: PokeApiService
 ) : PokeApiRepository {
 
     override suspend fun getTypeList(): TypeEntityList? =
-        dataSource.getTypeList()
+        service.getTypeList()
 
     override suspend fun getTypeDetail(typeID: String): TypeDetailEntity? =
-        dataSource.getTypeDetail(typeID)
+        service.getTypeDetail(typeID)
 }

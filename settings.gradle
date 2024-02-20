@@ -16,3 +16,4 @@ rootProject.name = "PokeApiApp"
 include ':app'
 include ':core'
 include ':pokeapi'
+include ':data'

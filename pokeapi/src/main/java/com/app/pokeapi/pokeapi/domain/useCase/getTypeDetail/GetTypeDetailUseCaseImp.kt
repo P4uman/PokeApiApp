@@ -1,6 +1,6 @@
 package com.app.pokeapi.pokeapi.domain.useCase.getTypeDetail
 
-import com.app.pokeapi.pokeapi.data.entities.TypeDetailEntity
+import com.app.pokeapi.entities.TypeDetailEntity
 import com.app.pokeapi.pokeapi.domain.core.FailureTypes
 import com.app.pokeapi.pokeapi.domain.model.PokemonShortModel
 import com.app.pokeapi.pokeapi.domain.model.TypeDetailModel

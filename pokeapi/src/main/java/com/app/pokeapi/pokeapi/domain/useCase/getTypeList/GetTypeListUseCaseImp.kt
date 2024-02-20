@@ -1,12 +1,11 @@
 package com.app.pokeapi.pokeapi.domain.useCase.getTypeList
 
-import com.app.pokeapi.pokeapi.domain.useCase.getTypeList.model.TypeEnum
-import com.app.pokeapi.pokeapi.data.entities.TypeEntity
+import com.app.pokeapi.entities.TypeEntity
 import com.app.pokeapi.pokeapi.domain.core.FailureTypes
 import com.app.pokeapi.pokeapi.domain.model.TypeModel
 import com.app.pokeapi.pokeapi.domain.repository.PokeApiRepository
 import com.app.pokeapi.pokeapi.domain.useCase.getTypeList.model.GetTypeListResult
-
+import com.app.pokeapi.pokeapi.domain.useCase.getTypeList.model.TypeEnum
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -14,15 +13,15 @@ import javax.inject.Inject
 class GetTypeListUseCaseImp
 @Inject constructor(
     private val repository: PokeApiRepository
-): GetTypeListUseCase{
+) : GetTypeListUseCase {
 
     override suspend fun invoke(): Flow<GetTypeListResult> = getTypeList()
 
-    private suspend fun getTypeList() : Flow<GetTypeListResult> = flow {
+    private suspend fun getTypeList(): Flow<GetTypeListResult> = flow {
         runCatching {
             repository.getTypeList()
-        }.map {entityList ->
-            val modelList : List<TypeModel?> = entityList?.list?.map { entity ->
+        }.map { entityList ->
+            val modelList: List<TypeModel?> = entityList?.list?.map { entity ->
                 mapToDomain(entity)
             } ?: emptyList()
 
@@ -30,7 +29,7 @@ class GetTypeListUseCaseImp
             if (result.isNotEmpty()) {
                 emit(GetTypeListResult.OnSuccess(result))
             } else {
-                emit (GetTypeListResult.OnFailure(FailureTypes.Empty))
+                emit(GetTypeListResult.OnFailure(FailureTypes.Empty))
             }
         }.getOrElse {
             emit(GetTypeListResult.OnFailure(FailureTypes.GeneralError))

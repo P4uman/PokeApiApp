@@ -1,9 +1,11 @@
 package com.app.pokeapi.domain.useCase
 
-import com.app.pokeapi.data.network.TypeDetailService
 import com.app.pokeapi.data.entities.PokemonShortEntity
 import com.app.pokeapi.data.entities.PokemonShortInnerEntity
 import com.app.pokeapi.data.entities.TypeDetailEntity
+import com.app.pokeapi.pokeapi.domain.repository.PokeApiRepository
+import com.app.pokeapi.pokeapi.domain.useCase.getTypeDetail.GetTypeDetailUseCase
+import com.app.pokeapi.pokeapi.domain.useCase.getTypeDetail.GetTypeDetailUseCaseImp
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -16,49 +18,49 @@ import org.junit.Test
 class GetTypeDetailUseCaseTest {
 
     @RelaxedMockK
-    private lateinit var service: TypeDetailService
+    private lateinit var repository: PokeApiRepository
 
     lateinit var getTypeListUseCase: GetTypeDetailUseCase
 
     @Before
     fun onBefore() {
         MockKAnnotations.init(this)
-        getTypeListUseCase = GetTypeDetailUseCase(service)
+        getTypeListUseCase = GetTypeDetailUseCaseImp(repository)
     }
 
     @Test
     fun `when service returns null then get an empty list`() = runBlocking {
         val typeID = "typeID"
         // Given
-        coEvery { service.getTypeDetail(typeID) } returns null
+        coEvery { repository.getTypeDetail(typeID) } returns null
 
         // When
-        val result = getTypeListUseCase(typeID)
+        val result = getTypeListUseCase.invoke(typeID)
 
         // Then
-        coVerify(exactly = 1) { service.getTypeDetail(typeID) }
-        assert(true) { result.pokemonList.isEmpty() }
+        coVerify(exactly = 1) { repository.getTypeDetail(typeID) }
+        assert(true) { result. }
     }
 
     @Test
     fun `when service returns anything then map values to domain`() = runBlocking {
         // Given
         val typeID = "typeID"
-        val typeEntity = TypeDetailEntity(
+        val typeEntity = com.app.pokeapi.data.entities.TypeDetailEntity(
             ID = 1,
             pokemonList = listOf(
-                PokemonShortEntity(
-                    PokemonShortInnerEntity(
+                com.app.pokeapi.data.entities.PokemonShortEntity(
+                    com.app.pokeapi.data.entities.PokemonShortInnerEntity(
                         name = "name1"
                     )
                 ),
-                PokemonShortEntity(
-                    PokemonShortInnerEntity(
+                com.app.pokeapi.data.entities.PokemonShortEntity(
+                    com.app.pokeapi.data.entities.PokemonShortInnerEntity(
                         name = "name2"
                     )
                 ),
-                PokemonShortEntity(
-                    PokemonShortInnerEntity(
+                com.app.pokeapi.data.entities.PokemonShortEntity(
+                    com.app.pokeapi.data.entities.PokemonShortInnerEntity(
                         name = "name3"
                     )
                 )
