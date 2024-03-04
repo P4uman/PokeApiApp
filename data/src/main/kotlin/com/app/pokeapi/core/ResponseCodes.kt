@@ -1,6 +1,6 @@
 package com.app.pokeapi.core
 
-enum class ResponseCodes(code: String) {
+enum class ResponseCodes(val code: String) {
     BAD_REQUEST("400"),
     UNAUTHORIZED("401"),
     FORBIDDEN("403"),
@@ -12,8 +12,6 @@ enum class ResponseCodes(code: String) {
 
     companion object {
         fun fromStringCode(code: String?): ResponseCodes =
-            ResponseCodes.values().find {
-                it.toString() == code
-            } ?: UNKNOWN
+            ResponseCodes.values().find { it.code == code } ?: UNKNOWN
     }
 }

@@ -2,14 +2,12 @@ package com.app.pokeapi.features.searchByType.fragment.fragmentSearchByType
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.app.pokeapi.pokeapi.domain.model.TypeModel
-import com.app.pokeapi.pokeapi.domain.useCase.getTypeList.GetTypeListUseCase
-import com.app.pokeapi.pokeapi.domain.useCase.getTypeList.model.GetTypeListResult
-import com.app.pokeapi.pokeapi.domain.useCase.getTypeList.model.TypeEnum
 import com.app.pokeapi.features.searchByType.fragment.fragmentSearchByType.model.SearchByTypeUIState
-import com.app.pokeapi.features.searchByType.fragment.fragmentSearchByType.model.TypeDisplay
+import com.app.pokeapi.useCase.getTypeList.GetTypeListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,41 +27,21 @@ class SearchByTypeViewModel
 
     private fun getTypeListMenu() {
         viewModelScope.launch {
+            _uiState.update { SearchByTypeUIState.ShowLoader(true) }
             getTypeListUseCase.invoke()
-                .onStart { _uiState.update { SearchByTypeUIState.ShowLoader(true) } }
-                .onCompletion { _uiState.update { SearchByTypeUIState.ShowLoader(false) } }
-                .catch { cause: Throwable ->
-                    handleGetTypeListMenuError(cause.message)
+                .onSuccess { result ->
+                    _uiState.update {
+                        SearchByTypeUIState.BindTypeList(result)
+                    }
                 }
-                .collect { result ->
-                    when (result) {
-                        is GetTypeListResult.OnFailure -> {
-                            handleGetTypeListMenuError(result.failure.name)
-                        }
-                        is GetTypeListResult.OnSuccess -> {
-                            _uiState.update {
-                                SearchByTypeUIState.BindTypeList(mapToDisplay(result.list))
-                            }
+                .onFailure { error ->
+                    _uiState.update {
+                        SearchByTypeUIState.ShowGenericError(error.message) {
+                            getTypeListMenu()
                         }
                     }
                 }
+            _uiState.update { SearchByTypeUIState.ShowLoader(false) }
         }
-    }
-
-    private fun handleGetTypeListMenuError(error: String?) {
-        _uiState.update {
-            SearchByTypeUIState.ShowGenericError(error) {
-                getTypeListMenu()
-            }
-        }
-    }
-
-    private fun mapToDisplay(model: List<TypeModel>) = model.map { typeModel ->
-        val typeResources = TypeEnum.getTypeResource(typeModel.type)
-        TypeDisplay(
-            name = typeModel.typeName,
-            color = typeResources.color,
-            icon = typeResources.icon
-        )
     }
 }

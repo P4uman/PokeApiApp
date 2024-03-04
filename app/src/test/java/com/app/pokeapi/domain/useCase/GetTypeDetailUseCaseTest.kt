@@ -3,9 +3,8 @@ package com.app.pokeapi.domain.useCase
 import com.app.pokeapi.data.entities.PokemonShortEntity
 import com.app.pokeapi.data.entities.PokemonShortInnerEntity
 import com.app.pokeapi.data.entities.TypeDetailEntity
-import com.app.pokeapi.pokeapi.domain.repository.PokeApiRepository
-import com.app.pokeapi.pokeapi.domain.useCase.getTypeDetail.GetTypeDetailUseCase
-import com.app.pokeapi.pokeapi.domain.useCase.getTypeDetail.GetTypeDetailUseCaseImp
+import com.app.pokeapi.useCase.getTypeDetail.GetTypeDetailUseCase
+import com.app.pokeapi.useCase.getTypeDetail.GetTypeDetailUseCaseImp
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -18,14 +17,15 @@ import org.junit.Test
 class GetTypeDetailUseCaseTest {
 
     @RelaxedMockK
-    private lateinit var repository: PokeApiRepository
+    private lateinit var repository: com.app.pokeapi.repository.PokeApiRepository
 
-    lateinit var getTypeListUseCase: GetTypeDetailUseCase
+    lateinit var getTypeListUseCase: com.app.pokeapi.useCase.getTypeDetail.GetTypeDetailUseCase
 
     @Before
     fun onBefore() {
         MockKAnnotations.init(this)
-        getTypeListUseCase = GetTypeDetailUseCaseImp(repository)
+        getTypeListUseCase =
+            com.app.pokeapi.useCase.getTypeDetail.GetTypeDetailUseCaseImp(repository)
     }
 
     @Test

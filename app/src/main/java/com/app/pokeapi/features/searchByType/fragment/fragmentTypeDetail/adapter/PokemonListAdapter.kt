@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.app.pokeapi.databinding.ItemPokemonBinding
-import com.app.pokeapi.features.searchByType.fragment.fragmentTypeDetail.model.PokemonShortDisplay
+import com.app.pokeapi.model.PokemonShortModel
 
 class PokemonListAdapter : RecyclerView.Adapter<PokemonListAdapter.ViewHolder>() {
 
-    private var pokemonList: List<PokemonShortDisplay> = ArrayList(0)
+    private var pokemonList: List<PokemonShortModel> = ArrayList(0)
 
     inner class ViewHolder(binding: ItemPokemonBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -17,7 +17,7 @@ class PokemonListAdapter : RecyclerView.Adapter<PokemonListAdapter.ViewHolder>()
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun bindData(pokemonList: List<PokemonShortDisplay>) {
+    fun bindData(pokemonList: List<PokemonShortModel>) {
         this.pokemonList = ArrayList(pokemonList)
         notifyDataSetChanged()
     }
@@ -28,7 +28,7 @@ class PokemonListAdapter : RecyclerView.Adapter<PokemonListAdapter.ViewHolder>()
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.name.text = pokemonList[position].name
+        holder.name.text = pokemonList[position].pokemonName
     }
 
     override fun getItemCount(): Int {

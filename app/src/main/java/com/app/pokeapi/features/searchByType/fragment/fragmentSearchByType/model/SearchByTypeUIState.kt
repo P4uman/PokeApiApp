@@ -1,5 +1,7 @@
 package com.app.pokeapi.features.searchByType.fragment.fragmentSearchByType.model
 
+import com.app.pokeapi.model.type.TypeDisplay
+
 sealed class SearchByTypeUIState {
 
     data class ShowLoader(val visible: Boolean) : SearchByTypeUIState()

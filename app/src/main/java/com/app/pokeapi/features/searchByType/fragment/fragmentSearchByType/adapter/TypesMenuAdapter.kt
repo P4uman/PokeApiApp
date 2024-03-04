@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.app.pokeapi.databinding.ItemTypeBinding
-import com.app.pokeapi.features.searchByType.fragment.fragmentSearchByType.model.TypeDisplay
+import com.app.pokeapi.model.type.TypeDisplay
 
 class TypesMenuAdapter(
 private val onItemClickListener: (TypeDisplay) -> Unit
@@ -34,8 +34,8 @@ private val onItemClickListener: (TypeDisplay) -> Unit
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val type = typeList[position]
         holder.title.text = type.name
-        holder.icon.setImageResource(type.icon)
-        holder.linearContainer.setBackgroundResource(type.color)
+        holder.icon.setImageResource(type.resources.icon)
+        holder.linearContainer.setBackgroundResource(type.resources.color)
         holder.linearContainer.setOnClickListener {
             onItemClickListener.invoke(type)
         }

@@ -2,23 +2,22 @@ package com.app.pokeapi.features.searchByType.fragment.fragmentTypeDetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.app.pokeapi.pokeapi.domain.model.TypeDetailModel
-import com.app.pokeapi.pokeapi.domain.useCase.getTypeDetail.GetTypeDetailUseCase
-import com.app.pokeapi.pokeapi.domain.useCase.getTypeDetail.model.GetTypeDetailResult
-import com.app.pokeapi.features.searchByType.fragment.fragmentTypeDetail.model.PokemonShortDisplay
-import com.app.pokeapi.features.searchByType.fragment.fragmentTypeDetail.model.TypeDetailDisplay
 import com.app.pokeapi.features.searchByType.fragment.fragmentTypeDetail.model.TypeDetailUIState
+import com.app.pokeapi.repository.PokeApiRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class TypeDetailViewModel
 @Inject constructor(
-    private val getTypeDetailUseCase: GetTypeDetailUseCase
+    private val repository: PokeApiRepository
 ) : ViewModel() {
 
+    // TODO Try to use channel and better state
     private var _uiState: MutableStateFlow<TypeDetailUIState> =
         MutableStateFlow(TypeDetailUIState.ShowLoader(true))
     val uiState get() = _uiState.asStateFlow()
@@ -29,44 +28,23 @@ class TypeDetailViewModel
 
     private fun getTypeDetail(typeID: String) {
         viewModelScope.launch {
-            getTypeDetailUseCase.invoke(typeID)
-                .onStart {
-                    _uiState.update { TypeDetailUIState.ShowLoader(true) }
-                }
-                .onCompletion {
-                    _uiState.update { TypeDetailUIState.ShowLoader(false) }
-                }
-                .catch {
-                    handleGetTypeDetailError(it.message, typeID)
-                }
-                .collect { result ->
-                    when (result) {
-                        is GetTypeDetailResult.OnFailure -> {
-                            handleGetTypeDetailError(result.failure.name, typeID)
-                        }
-                        is GetTypeDetailResult.OnSuccess -> {
-                            _uiState.update {
-                                TypeDetailUIState.BindTypeDetail(mapToDisplay(result.result))
+            _uiState.update { TypeDetailUIState.ShowLoader(true) }
+
+            repository.getTypeDetail(typeID)
+                .onSuccess { result ->
+                    _uiState.update { TypeDetailUIState.BindTypeDetail(result) }
+                }.onFailure { error ->
+                    _uiState.update {
+                        TypeDetailUIState.ShowGenericError(
+                            error = error.message,
+                            onRetry = {
+                                getTypeDetail(typeID)
                             }
-                        }
+                        )
                     }
                 }
+
+            _uiState.update { TypeDetailUIState.ShowLoader(false) }
         }
     }
-
-    private fun handleGetTypeDetailError(error: String?, typeID: String) {
-        _uiState.update {
-            TypeDetailUIState.ShowGenericError(error) {
-                getTypeDetail(typeID)
-            }
-        }
-    }
-
-    private fun mapToDisplay(model: TypeDetailModel) =
-        TypeDetailDisplay(
-            model.pokemonList.map { pokemonShortModel ->
-                PokemonShortDisplay(pokemonShortModel.pokemonName)
-            }
-        )
-
 }

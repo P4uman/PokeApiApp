@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.pokeapi.core.extensions.collectState
 import com.app.pokeapi.databinding.FragmentTypeDetailBinding
 import com.app.pokeapi.features.searchByType.fragment.fragmentTypeDetail.adapter.PokemonListAdapter
-import com.app.pokeapi.features.searchByType.fragment.fragmentTypeDetail.model.TypeDetailDisplay
 import com.app.pokeapi.features.searchByType.fragment.fragmentTypeDetail.model.TypeDetailUIState
+import com.app.pokeapi.model.PokemonShortModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,8 +36,8 @@ class TypeDetailFragment : com.app.pokeapi.core.baseUI.BaseFragment<FragmentType
         viewModel.init(args.typeID)
     }
 
-    private fun bindTypeDetail(display: TypeDetailDisplay) {
-        pokemonAdapter.bindData(display.pokemonByType)
+    private fun bindTypeDetail(display: List<PokemonShortModel>) {
+        pokemonAdapter.bindData(display)
     }
 
     override fun inflateViewBinding(layoutInflater: LayoutInflater) =

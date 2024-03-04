@@ -1,10 +1,10 @@
 package com.app.pokeapi.domain.useCase
 
-import com.app.pokeapi.pokeapi.domain.useCase.getTypeList.model.TypeEnum
-import com.app.pokeapi.data.service.PokeApiService
 import com.app.pokeapi.data.entities.TypeEntity
 import com.app.pokeapi.data.entities.TypeEntityList
+import com.app.pokeapi.data.service.PokeApiService
 import com.app.pokeapi.domain.useCase.getTypeList.GetTypeListUseCaseImp
+import com.app.pokeapi.model.type.TypeEnum
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify

@@ -1,19 +1,16 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    kotlin("kapt")
-    id("com.google.dagger.hilt.android")
 }
 
 android {
-    namespace = "com.app.pokeapi.data"
+    namespace = "com.app.pokeapi.ui"
     compileSdk = 34
 
     defaultConfig {
-        minSdk = 24
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "BASE_URL_POKEAPI", "\"https://pokeapi.co\"")
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -34,14 +31,4 @@ android {
     }
 }
 
-dependencies {
-    // Retrofit
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    // Logging
-    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3")
-
-    // Dagger hilt
-    implementation ("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
-}
+dependencies {}
